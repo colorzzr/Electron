@@ -4,7 +4,7 @@
   "description": "",
   "main": "first.js",
   "scripts": {
-    "start": "electron first.js",
+    "start": "electron .",
     "build": "electron-packager --electron-version=4.0.1 . Test"
   },
   "repository": {
@@ -18,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "asar": "^0.14.6",
+    "electron": "^4.0.1",
     "electron-packager": "^13.0.1"
   }
 }

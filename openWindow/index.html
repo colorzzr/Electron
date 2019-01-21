@@ -1,11 +1,48 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <script src="first.js"></script>
 </head>
 <body>
     <h1>这是第一个Electron应用</h1>
-    <script src="home.js"></script>
+	
+	<label id='testLabel'>Test Lable</label>
+	<br>
+	<button onclick="openWindow()">test</button>
+
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!--  指定页面编码格式  -->
+  <meta charset="UTF-8">
+  <!--  指定页头信息 -->
+  <title>BrowserWindowProxy与open方法</title>
+  <script src="first.js"></script>
+</head>
+<body>
+<button onclick="onClick_OpenWindow()">打开子窗口</button>
+<br>
+<br>
+<button onclick="onClick_OpenWindow1()">打开子窗口（设置窗口标题和窗口属性）</button>
+<br>
+<br>
+<button onclick="onClick_Focus()">获得焦点</button>
+<br>
+<br>
+<button onclick="onClick_Blur()">失去焦点</button>
+<br>
+<br>
+<button onclick="onClick_Close()">关闭子窗口</button>
+<br>
+<br>
+<button onclick="onClick_PrintDialog()">打印对话框</button>
+<br>
+<br>
 </body>
 </html>

@@ -8,3 +8,17 @@ button.addEventListener('click', () =>{
 }, false)
 
 document.body.appendChild(button)
+
+button = document.createElement('button');
+
+button.textContent = 'pop up';
+button.addEventListener('click', () => {
+	main.test()
+}, false)
+
+document.body.appendChild(button)
+
+function myFunc(){
+	const label = document.getElementById('label');
+    label.innerText= 'test'
+}
