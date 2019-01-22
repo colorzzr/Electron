@@ -18,11 +18,12 @@ function loginSubmit(){
 		label1.innerText = retData;
 		// if(retData === 'success' ){
 			// main.openWindow('mainPage', userName.value);
-			win = window.open('mainPage.html');
+			// win = window.open('mainPage.html');
 			// win.once('ready-to-show', ()=>{
 		 //        win.postMessage('abcd', '*');
 		 //    })
 		// }
+		main.openWindow();
 	});
 }
 

@@ -43,7 +43,7 @@ module.exports.openWindow = function(fileName, userName){
 }
 
 module.exports.childSend = function(){
-    win.postMessage('abcd', '*');
+    win.webContents.send('ping', 'whoooooooh!')
 }
 
 

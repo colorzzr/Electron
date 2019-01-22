@@ -27,3 +27,37 @@ const main = remote.require(`./index.js`);
 ### One more thing!
 
 Dont include both electron entry and html/js in the html file
+
+### One more thing!
+
+there is two way to communicate the window 
+
+```
+	// on window part
+	win = new BrowserWindow({ width: 800, height: 600 })
+    win.loadURL(`file://${__dirname}/mainPage.html`)
+    win.webContents.on('did-finish-load', () => {
+        win.webContents.send('ping', 'whoooooooh!')
+    })
+
+	// on response 
+	var ipcRenderer = require('electron').ipcRenderer;
+	ipcRenderer.on('ping', function (event,store) {
+	    console.log(store);
+	    const label = document.getElementById('label2');
+	    label.innerText = 2222;
+	});
+
+```
+or
+
+```
+
+win = window.open('mainPage.html');
+win.postMessage('abcd', '*');
+
+```
+
+
+
+

@@ -11,3 +11,10 @@ function onLoad(){
 }
 
 
+// renderer process
+var ipcRenderer = require('electron').ipcRenderer;
+ipcRenderer.on('ping', function (event,store) {
+    console.log(store);
+    const label = document.getElementById('label2');
+    label.innerText = 2222;
+});
