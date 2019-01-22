@@ -17,29 +17,36 @@ app.on('ready', () =>{
 
     let loginPage = new BrowserWindow({width: 800, height: 600, parent: main});
     loginPage.loadFile('loginPage.html');
-})
 
-// const openMainPage = function(){
-// 	// let test = new BrowserWindow({width: 600, height: 800, parent: main});
-// 	// test.loadFile('./mainPage.html');
-// 	const label1 = document.getElementById("label1");
-// 	label1.innerText = 55;
-// }
-// socket.emit('hello', 'test', 'ccc', returnMsg=>{
-// 	// label1.innerText = returnMsg;
-// 	console.log(returnMsg);
-// });
+    module.exports.main = main;
+})
 
 module.exports.socket = socket;
 var tt = {
 	data:10,
 }
 module.exports.tt = tt;
-module.exports.main = main;
-module.exports.openWindow = function(fileName){
-	let win = new BrowserWindow({width: 800, height: 600, parent: main})
-    win.loadURL(`file://${__dirname}/` + fileName + `.html`)
+
+var win;
+module.exports.openWindow = function(fileName, userName){
+	// win = new BrowserWindow({width: 800, height: 600, parent: main});
+    // win.open('mainPage.html');
+    // win.once('show', ()=>{
+    //     win.postMessage('abcd', '*');
+    // })
+    // win = window.open('mainPage.html');
+    win = new BrowserWindow({ width: 800, height: 600 })
+    win.loadURL(`file://${__dirname}/mainPage.html`)
+    win.webContents.on('did-finish-load', () => {
+        win.webContents.send('ping', 'whoooooooh!')
+    })
 }
+
+module.exports.childSend = function(){
+    win.postMessage('abcd', '*');
+}
+
+
 // 
 // module.exports.openWindow = function(fileName){
 //     let win = new BrowserWindow({width: 800, height: 600})

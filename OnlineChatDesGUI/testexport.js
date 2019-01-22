@@ -2,7 +2,7 @@
 
 console.log('test export');
 
-const myVal = 222;
+let myVal = 222;
 
 console.log(myVal);
 
@@ -21,5 +21,6 @@ function test(){
 
 module.exports.test = test;
 
+myVal = 333;
 
 console.log(module);
