@@ -16,14 +16,9 @@ function loginSubmit(){
 	socket.emit('login', userName.value, userPassword.value, returnMsg=>{
 		const retData = returnMsg.data;
 		label1.innerText = retData;
-		// if(retData === 'success' ){
-			// main.openWindow('mainPage', userName.value);
-			// win = window.open('mainPage.html');
-			// win.once('ready-to-show', ()=>{
-		 //        win.postMessage('abcd', '*');
-		 //    })
-		// }
-		main.openWindow();
+		if(retData === 'success' ){
+			main.openWindow(userName.value);	
+		}
 	});
 }
 

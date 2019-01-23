@@ -1,20 +1,19 @@
 // const remote = require('electron').remote;
 // const userInfo = remote.require(`./GUIAPI.js`);
-
-
-function onLoad(){
-	const label = document.getElementById('label2');
-	window.addEventListener('message', function (e) {
-        // alert(e.origin);
-        label.innerText = e.data
-    });
-}
-
+const remote = require('electron').remote;
+const main = remote.require(`./index.js`);
+const socket = main.socket;
 
 // renderer process
 var ipcRenderer = require('electron').ipcRenderer;
-ipcRenderer.on('ping', function (event,store) {
-    console.log(store);
+ipcRenderer.on('login', function (event,userName) {
     const label = document.getElementById('label2');
-    label.innerText = 2222;
+    label.innerText = "Current User is " + userName;
+
+
+    // by default join the default room for test
+    socket.emit('join', 'default', userName, returnMsg=>{
+		const mainPageReturnMsg = document.getElementById('mainPageReturnMsg');
+		mainPageReturnMsg.innerText = "Current room is " + returnMsg.data;
+	});
 });
