@@ -7,9 +7,15 @@
 <body>
 	<h1>Welcome to Chat!</h1>
 	<h2>Here is data</h2>
-	<label id='label2'> Waiting </label>
-	<br>
 	<label id='mainPageReturnMsg'> Return Message </label>
-	<!-- <button onclick="onLoad()"> Test </button> -->
+	<br>
+	<label id='curUser'> Waiting </label>
+	<br>
+	<form id="msgSendForm">
+		Input Your Message
+		<br>
+		<input type="text" name="sendMsgBox"><br>
+	</form>
+	<button onclick="sendMessage()"> sendMessage </button>
 </body>
 </html>
