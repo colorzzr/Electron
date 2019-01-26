@@ -3,8 +3,8 @@ const {app, BrowserWindow} = electron;
 
 const io = require('socket.io-client')
 // import io from 'socket.io-client';
-// var socket = io("http://localhost:3000");
-var socket = io("http://18.223.112.55:3000");
+var socket = io("http://localhost:3000");
+// var socket = io("http://18.223.112.55:3000");
 
 socket.emit('hello', 'test', 'ccc', returnMsg=>{
  // label1.innerText = returnMsg;
@@ -28,12 +28,19 @@ app.on('ready', () =>{
 
 module.exports.socket = socket;
 
-let mainPageWin;
+let mainPageWin, roomPage;
 module.exports.openWindow = function(userName){
     // open the main system page
-    mainPageWin = new BrowserWindow({ width: 400, height: 400, parent: main})
+    mainPageWin = new BrowserWindow({x:300, y: 200, width: 300, height: 400, parent: main})
     mainPageWin.loadURL(`file://${__dirname}/mainPage.html`);
     mainPageWin.webContents.on('did-finish-load', () => {
+        mainPageWin.webContents.send('login', userName)
+    });
+
+    // send the user name to room page
+    roomPage = new BrowserWindow({x:600, y: 200, width: 200, height: 400, parent: main});
+    roomPage.loadURL(`file://${__dirname}/roomPage.html`);
+    roomPage.webContents.on('did-finish-load', () => {
         mainPageWin.webContents.send('login', userName)
     });
 

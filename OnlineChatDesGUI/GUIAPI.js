@@ -11,7 +11,6 @@ function loginSubmit(){
 	const loginForm = document.getElementById("loginForm");
 	const {userName, userPassword} = loginForm;
 	const label1 = document.getElementById("loginLabel");
-	// label1.innerText = userName.value;
 
 	socket.emit('login', userName.value, userPassword.value, returnMsg=>{
 		const retData = returnMsg.data;
@@ -24,11 +23,10 @@ function loginSubmit(){
 
 function myFunc(){
 	const label1 = document.getElementById("label1");
-	label1.innerText = main.tt.data;
-	console.log("test");
+	label1.innerText = 2121;
 }
 
 function myFunc2(){
-	win.postMessage('abcd', '*');
+	document.body.appendChild(document.createTextNode("studentText"));
 }
 
