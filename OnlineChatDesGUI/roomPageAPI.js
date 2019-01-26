@@ -19,10 +19,9 @@ ipcRenderer.on('login', function (event,userName) {
 
 
     // by default join the default room for test
- //    socket.emit('join', 'default', curUser, returnMsg=>{
-	// 	const mainPageReturnMsg = document.getElementById('mainPageReturnMsg');
-	// 	mainPageReturnMsg.innerText = "Current room is " + returnMsg.data;
-	// });
+    socket.emit('join', 'default', curUser, returnMsg=>{
+		main.roomChange(returnMsg.data);
+	});
 });
 
 function addRoom(){
@@ -48,7 +47,7 @@ function addRoom(){
 
 		//and join the room 
 		socket.emit('join', roomName.value, curUser, returnMsg=>{
-
+			main.roomChange(roomName.value);
 		});
 	}
 

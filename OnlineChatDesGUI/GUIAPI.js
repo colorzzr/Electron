@@ -27,6 +27,7 @@ function myFunc(){
 }
 
 function myFunc2(){
-	document.body.appendChild(document.createTextNode("studentText"));
+	// document.body.appendChild(document.createTextNode("studentText"));
+	main.childSend();
 }
 

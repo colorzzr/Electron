@@ -41,12 +41,17 @@ module.exports.openWindow = function(userName){
     roomPage = new BrowserWindow({x:600, y: 200, width: 200, height: 400, parent: main});
     roomPage.loadURL(`file://${__dirname}/roomPage.html`);
     roomPage.webContents.on('did-finish-load', () => {
-        mainPageWin.webContents.send('login', userName)
+        roomPage.webContents.send('login', userName)
     });
 
     // close the login
     loginPage.close();
 }
+
+// function for room page to send current room to main page
+module.exports.roomChange = function(roomName){
+    mainPageWin.webContents.send('join', roomName);
+} 
 
 module.exports.childSend = function(){
     mainPageWin.webContents.send('ping', 'whoooooooh!')
