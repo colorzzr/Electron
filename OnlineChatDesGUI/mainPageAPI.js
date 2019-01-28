@@ -5,6 +5,7 @@ const main = remote.require(`./index.js`);
 const socket = main.socket;
 
 let curUser = '';
+let curRoom = '';
 
 // renderer process
 var ipcRenderer = require('electron').ipcRenderer;
@@ -27,11 +28,20 @@ ipcRenderer.on('login', function (event,userName) {
 //hold on for room change
 ipcRenderer.on('join', function (event,roomName) {
     const mainPageReturnMsg = document.getElementById('mainPageReturnMsg');
-	mainPageReturnMsg.innerText = "Current room is " + roomName;
+    curRoom = roomName;
+	mainPageReturnMsg.innerText = "Current room is " + curRoom;
+});
+
+// open the thread to
+ipcRenderer.on('roomBoardcast', function (event,data) {
+	const roomList = document.getElementById('msgList');
+	const listElement = document.createElement('li');
+	listElement.appendChild(document.createTextNode(data));
+	roomList.appendChild(listElement);
 });
 
 function sendMessage(){
 	const msgSendForm = document.getElementById("msgSendForm");
 	const {sendMsgBox} = msgSendForm;
-	socket.emit('roomBoardcastTest', 'default', sendMsgBox.value, curUser);
+	socket.emit('roomBoardcastTest', curRoom, sendMsgBox.value, curUser);
 }
