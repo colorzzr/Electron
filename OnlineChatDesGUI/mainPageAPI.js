@@ -6,6 +6,7 @@ const socket = main.socket;
 
 let curUser = '';
 let curRoom = '';
+let roomMsgList = [];
 
 // renderer process
 var ipcRenderer = require('electron').ipcRenderer;
@@ -30,14 +31,25 @@ ipcRenderer.on('join', function (event,roomName) {
     const mainPageReturnMsg = document.getElementById('mainPageReturnMsg');
     curRoom = roomName;
 	mainPageReturnMsg.innerText = "Current room is " + curRoom;
+
+	if(roomMsgList[curRoom] === undefined) roomMsgList[curRoom] = [];
 });
 
 // open the thread to
-ipcRenderer.on('roomBoardcast', function (event,data) {
+ipcRenderer.on('roomBoardcast', function (event,data,fromWhichRoom) {
+	// push into array
+	roomMsgList[fromWhichRoom].push(data);
+
+	// clear up the stuff
 	const roomList = document.getElementById('msgList');
-	const listElement = document.createElement('li');
-	listElement.appendChild(document.createTextNode(data));
-	roomList.appendChild(listElement);
+	roomList.innerText = '';
+
+	//push all data recorded in current room
+	for(let i = 0; i < roomMsgList[curRoom].length; i+=1){
+		const listElement = document.createElement('li');
+		listElement.appendChild(document.createTextNode(roomMsgList[curRoom][i]));
+		roomList.appendChild(listElement);
+	}
 });
 
 function sendMessage(){

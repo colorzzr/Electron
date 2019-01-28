@@ -22,6 +22,7 @@ ipcRenderer.on('login', function (event,userName) {
     socket.emit('join', 'default', curUser, returnMsg=>{
 		main.roomChange(returnMsg.data);
 	});
+
 });
 
 function addRoom(){
@@ -38,6 +39,7 @@ function addRoom(){
 	if(roomName !== '' || roomName !== undefined){
 		const roomButton = document.createElement('button')
 		roomButton.appendChild(document.createTextNode(roomName.value));
+		roomButton.setAttribute("onclick", "changeRoom('"+ roomName.value +"')");
 
 		//remember not use const here or would not change
 		const roomList = document.getElementById('roomList');
@@ -51,4 +53,12 @@ function addRoom(){
 		});
 	}
 
+}
+
+// send to main page say I am change the room
+function changeRoom(room){
+	//main.roomChange(e.target.name);
+	const testL = document.getElementById('roomTest');
+	testL.innerText = room;
+	main.roomChange(room);
 }
